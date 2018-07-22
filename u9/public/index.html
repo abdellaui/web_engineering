@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <title>Übung 9 - NodeJS Accept Header</title>
+</head>
+<body>
+  <input id="userID" type="number" min="1" max="10" />
+  <button onclick="getUserInfo('application/json', 'json', $('#userID').val())">Lade Daten (JSON)</button>
+  <button onclick="getUserInfo('text/plain', 'text', $('#userID').val())">Lade Daten (ASCII)</button>
+  <br>
+
+  <pre id="serverData"></pre>
+
+  <script>
+  function getUserInfo(acceptType, dataType, id){
+    $.ajax({
+      url: 'http://127.0.0.1:8080/users/' +id,
+      type: 'GET',
+      dataType: dataType,
+      headers: {
+        Accept: acceptType
+      },
+      success: function(data) {
+        console.log(data);
+        $('#serverData').html(data);
+      }
+    });
+  }
+  </script>
+</body>
+</html>

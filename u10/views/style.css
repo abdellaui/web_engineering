@@ -1,0 +1,18 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.gallery-grid {
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(auto-fill, 150px);
+    justify-items: center;
+    grid-column-gap 5px;
+}
+
+.photo-box img {
+    width: 100%;
+}

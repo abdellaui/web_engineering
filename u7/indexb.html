@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Übung 7 - XHR, AJAX, Promises</title>
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <script>
+        function promisifyAjax(url) {
+            return new Promise(function (resolve, reject) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function (data) {
+                        resolve(data);
+                    },
+                    error: function (e) {
+                        reject(e);
+                    }
+                });
+            });
+        }
+        var urls = [
+            "https://jsonplaceholder.typicode.com/users/1",
+            "https://jsonplaceholder.typicode.com/users/2",
+            "https://jsonplaceholder.typicode.com/users/7"
+        ];
+
+        var promises =[promisifyAjax(urls[0]),promisifyAjax(urls[1]),promisifyAjax(urls[2])];
+        Promise.all(promises).then(data => {
+            console.log(data);
+        }).catch(err => {
+            console.log(err);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Übung 8 </title>
+    <script src="jquery.min.js"></script>
+    <style>
+        tr.even {
+            background-color: lightgray
+        }
+    </style>
+</head>
+
+<body>
+    <table></table>
+    <script>
+        function getUserInfo() {
+            $.ajax({
+                url: 'http://127.0.0.1:8080/users',
+                type: 'GET',
+                success: function (data) {
+                    var jsonData = JSON.parse(data);
+                    makeTable(jsonData);
+                }
+            });
+        }
+        var globalData;
+        function makeTable(jsonData) {
+            globalData = jsonData;
+            let firstItem = jsonData[0];
+            var currTr = $('<tr>');
+            for (var key in firstItem) {
+                currTr.append($('<th>').text(key));
+            }
+            var currThead = $('<thead>').append(currTr);
+            var tBody = $('<tbody>');
+            tBody.append(currThead);
+
+            var currTFoot = $('<tfoot>');
+            $.each(jsonData, function (i, e) {
+
+                var currTr = $('<tr>');
+                if (i % 2 == 0) {
+                    currTr.addClass('even');
+                }
+                for (var key in e) {
+                    currTr.append($('<td>').text(e[key]));
+                }
+                currTFoot.append(currTr);
+            });
+            tBody.append(currTFoot);
+            $('table').html(tBody);
+        }
+
+
+        getUserInfo();
+    </script>
+</body>
+
+</html>

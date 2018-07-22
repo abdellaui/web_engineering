@@ -1,0 +1,11 @@
+extends singleView.pug
+block comments
+    each val, index in img.comments
+        p
+        | #{val.content}
+block formular
+    form(method='POST' action='/singleView/'+img.id)
+        div.form-group
+        label(for='Kommentar') Kommentar:
+        input#name.form-control(type='text', placeholder='...' name='comment')
+        button.btn.btn-primary(type='submit') absenden

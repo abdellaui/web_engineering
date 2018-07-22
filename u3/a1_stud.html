@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Zahlenratespiel</title>
+  <style>
+    .highlight {
+      color: red;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <p>Inbox</p>
+    <ul>
+
+    </ul>
+  </div>
+  <script>
+    var messages = [
+      {
+        "subject": "first message",
+        "flag": ""
+      },
+      {
+        "subject": "second message",
+        "flag": ""
+      },
+      {
+        "subject": "third message",
+        "flag": "seen"
+      },
+      {
+        "subject": "spam message",
+        "flag": ""
+      },
+      {
+        "subject": "another message",
+        "flag": "seen"
+      }
+    ];
+
+
+    function genElements(){
+      const ulElement = document.querySelector("ul");
+      messages.forEach(currElement =>{
+        let liElement = document.createElement("li");
+        liElement.innerHTML = currElement.subject
+        if(currElement.flag != "")
+          liElement.setAttribute("flag", currElement.flag);
+
+        ulElement.appendChild(liElement);
+      });
+
+    }
+
+    function checkElements(){
+      const liElements = document.querySelectorAll("li");
+      liElements.forEach(currElement =>{
+        if(!currElement.getAttribute("flag"))
+          currElement.setAttribute("class", "highlight");
+      });
+    }
+
+    genElements();
+    checkElements();
+
+  </script>
+</body>
+
+</html>

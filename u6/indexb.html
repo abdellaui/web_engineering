@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Übung 6 - jQuery</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        .wrapper {
+            max-width: 1024px;
+            margin: 0 auto;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .wrapper>* {
+            border: 2px solid black;
+            border-radius: 2px;
+            padding: 10px;
+        }
+
+        .colorarea {
+            width: 100px;
+            height: 30px;
+        }
+
+        .highlight {
+            border-color: grey;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Farbauswahl</h1>
+    <hr>
+    <br>
+    <h3>Aktuelle Farbe:
+        <span id="currentColor"></span>
+    </h3>
+    <div class="wrapper"></div>
+    <script>
+        function getRandomColor() {
+            return "rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", " + Math.floor(
+                Math.random() * 256) + ", " + Math.floor(Math.random() * 256) + ")";
+        }
+
+        $(function () {
+            for (let i = 0; i < 8; i++) {
+                let currDiv = $('<div>').addClass('colorarea').css('background-color', getRandomColor());
+                $('.wrapper').append(currDiv);
+            }
+            $('.wrapper div').on('mouseenter mouseleave', function () {
+                $(this).toggleClass('highlight');
+                $('#currentColor').text($(this).css('background-color'));
+            });
+
+            /*
+            $('.wrapper div').on('click', function(){
+                
+                let currColor  = $(this).css('background-color');
+                $('h1').css('background-color', currColor);
+            });
+            */
+            $('.wrapper').delegate('div', 'click', function () {
+
+                let currColor = $(this).css('background-color');
+                $('h1').css('background-color', currColor);
+            });
+            // 4 items
+            for (let i = 0; i < 4; i++) {
+                let currDiv = $('<div>').addClass('colorarea').css('background-color', getRandomColor());
+                $('.wrapper').append(currDiv);
+            }
+
+        });
+    </script>
+</body>
+
+</html>

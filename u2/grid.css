@@ -1,0 +1,42 @@
+.head {
+    grid-area: header;
+}
+
+.content {
+    grid-area: content;
+}
+
+.nav {
+    grid-area: nav;
+}
+
+.side {
+    grid-area: sidebar;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-areas:    "header"
+                            "nav"
+                            "sidebar"
+                            "content"
+                            "footer";
+
+}
+
+@media (min-width: 500px) {
+    .wrapper {
+        display: grid;
+        grid-template-areas:    "header header"
+                                "nav nav"
+                                "sidebar content"
+                                "footer footer";
+    
+        grid-template-columns: 1fr 3fr;
+    }
+    
+}

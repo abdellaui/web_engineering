@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Übung 7 - XHR, AJAX, Promises</title>
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <script>
+        function fetchXhr(url, cb){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
+                    cb(xhr.responseText);
+            };
+            xhr.send()
+        }
+        function displayTodos(arr){
+            arr.forEach(function(element){
+                    
+                    var currCheckbox = $("<input>").attr({'type':'checkbox', 'disabled': 'disabled', 'checked':element.completed, 'id':element.title});
+                    var currLabel =  $("<label>").attr('for', element.title).text(element.title);
+                    $("body").append(currCheckbox).append(currLabel).append('<br>');
+            });
+        }
+        fetchXhr("https://jsonplaceholder.typicode.com/todos", function(data){
+           displayTodos(JSON.parse(data));
+        })
+    </script>
+</body>
+
+</html>

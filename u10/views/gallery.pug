@@ -1,0 +1,22 @@
+//- Foto-Übersicht
+doctype html  
+html(lang='en')  
+ head
+    title Pug
+    style
+      include style.css
+ body
+    div.gallery-grid
+        each val, index in imgArr.rows
+            div.photo-box
+                a(href='/singleView/'+val.id)
+                    img(src=val.url)
+    
+    div.paginator 
+        div.prev
+            a(href='/photos/'+Number(pageNumber-1))
+                |prev
+        div.next
+            a(href='/photos/'+Number(pageNumber+1))
+                |next
+

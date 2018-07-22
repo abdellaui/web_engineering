@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Übung 6 - jQuery</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        .buttonWrapper {
+            display: block;
+        }
+
+        .buttonWrapper button {
+            display: inline-block;
+        }
+
+        canvas {
+            background: gray;
+            height: 90vh;
+            width: 90vw;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="buttonWrapper">
+        <button id="mode_linie">Linie</button>
+        <button id="mode_freihand">Freihand</button>
+        <button id="mode_text">Text</button>
+        <button id="mode_clear">clear</button>
+    </div>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    $(function () {
+
+
+        var mode = 0;
+        var canvas = document.getElementById('canvas');
+        var cWidth = canvas.width;
+        var cHeight = canvas.height;
+        var ctx = canvas.getContext("2d");
+        ctx.font = "30px Arial";
+
+
+        function calcX(i) {
+            return i-canvas.offsetHeight;
+        }
+
+        function calcY(i) {
+            return i-canvas.offsetLeft;
+        }
+        var currPosition = {
+            'x': 0,
+            'y': 0
+        };
+        $('#mode_linie').on('click', function () {
+            mode = 0;
+        });
+        $('#mode_freihand').on('click', function () {
+            mode = 1;
+        });
+        $('#mode_text').on('click', function () {
+            mode = 2;
+        });
+        $('#mode_clear').on('click', function () {
+            ctx.clearRect(0, 0, cWidth, cHeight)
+        });
+
+        $(canvas).on('click', function (event) {
+            currPosition.x = calcX(event.clientX);
+            currPosition.y = calcY(event.clientY);
+        });
+
+        $(canvas).on('mousedown', function (event) {
+            if (mode == 0) {
+                ctx.beginPath();
+                ctx.moveTo(calcX(event.clientX), calcY(event.clientY));
+
+            }
+        });
+        $(canvas).on('mouseup', function (event) {
+            if (mode == 0) {
+
+                ctx.lineTo(calcX(event.clientX), calcY(event.clientY));
+                ctx.stroke();
+
+            }
+        });
+        $(document).on('keypress', function (event) {
+            if (mode == 2) {
+                ctx.fillText(event.key, currPosition.x, currPosition.y);
+                currPosition.x += 15;
+            }
+            //console.log(event.key);
+        });
+        $(canvas).on('mousemove', function (event) {
+            currX = calcX(event.clientX);
+            currY = calcY(event.clientY);
+
+            if (mode == 1) {
+                ctx.beginPath();
+                ctx.moveTo(currX, currY);
+                ctx.lineTo(currX + 1, currY + 1);
+                ctx.stroke();
+                console.log(currPosition);
+            }
+
+        });
+    });
+</script>
+
+</html>

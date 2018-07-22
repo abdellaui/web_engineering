@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Übung 6 - jQuery</title>
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="content">
+            <ul class="content itemlist">
+                <li>Item 1</li>
+                <li type="square">Item 2</li>
+                <li type="I">Item 3</li>
+                <li type="A">Item 4</li>
+                <li type="a">Item 5</li>
+            </ul>
+            <ul class="itemlist">
+                <li>Item von Liste 2</li>
+            </ul>
+            <ol class="itemlist">
+                <li>Geordnetes Item</li>
+            </ol>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            let liItem3 = $("ul.content li[type='I']");
+            let firstUl = $("ul.content.itemlist");
+            let evenLi = $("li:even");
+            console.log(liItem3);
+            console.log(firstUl);
+            console.log(evenLi);
+
+            $(liItem3).before('<li>Item 2.5</li>');
+            $(firstUl).append('<li>Item 6</li>');
+            $('<li>Item 4.5</li>').insertBefore(
+                evenLi.last().prev()
+            );
+
+            $('li:contains("4")').css("color", "gray");
+            firstUl.children().each(function () {
+                $(this).attr('type', 'square');
+            });
+        });
+    </script>
+</body>
+
+</html>

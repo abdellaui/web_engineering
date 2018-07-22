@@ -1,0 +1,47 @@
+body {
+    font-family: sans-serif;
+    font-size: 18pt;
+    color: #fff;
+}
+
+body div {
+    background-color: #aaa;
+}
+
+body div div {
+    margin: 20px;
+    border: 3px dotted #fff;
+    text-align: center;
+    display: inline-block;
+}
+
+
+body div div:nth-child(1) {
+    height: 32px;
+    width: 32px;
+    background-color: #caa;
+}
+
+body div div:nth-child(2) {
+    height: 64px;
+    width: 64px;
+    background-color: #aca;
+}
+
+body div div:nth-child(3) {
+    height: 128px;
+    width: 128px;
+    background-color: #aac;
+}
+
+
+/* TASK b */
+body table tr td:first-child{
+    width: 120px;
+}
+body table tr:nth-child(even){
+    background-color:#ccc;
+}
+body table tr:hover{
+    background-color:#aaa;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Simple Grid Layout</title>
+  <link rel="stylesheet" href="grid.css" type="text/css">
+  <style>
+    .wrapper {
+      max-width: 1024px;
+      margin: 0 auto;
+      font: 1.2em sans-serif;
+    }
+
+    .wrapper>* {
+      border: 2px solid black;
+      background-color: #BBBBBB;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (min-width: 500px) {
+      nav ul {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="head">The header</header>
+    <nav class="nav">
+      <ul>
+        <li><a href="#">Nav 1</a></li>
+        <li><a href="#">Nav 2</a></li>
+        <li><a href="#">Nav 3</a></li>
+      </ul>
+    </nav>
+    <article class="content">
+      <h1>Main Article</h1>
+      <p>
+        In publishing and graphic design, lorem ipsum is a filler text or greeking commonly used to demonstrate the textual elements of a graphic document or visual presentation. Replacing meaningful content with placeholder text allows designers to design the
+        form of the content before the content itself has been produced.
+      </p>
+      <p>
+        The lorem ipsum text is typically a scrambled section of De finibus bonorum et malorum, a 1st-century BC Latin text by Cicero, with words altered, added, and removed to make it nonsensical, improper Latin.
+      </p>
+      <p>
+        A variation of the ordinary lorem ipsum text has been used in typesetting since the 1960s or earlier, when it was popularized by advertisements for Letraset transfer sheets. It was introduced to the Information Age in the mid-1980s by Aldus Corporation,
+        which employed it in graphics and word-processing templates for its desktop publishing program PageMaker.
+      </p>
+    </article>
+    <aside class="side">Sidebar</aside>
+    <footer class="footer">The footer</footer>
+  </div>
+</body>
+
+</html>
